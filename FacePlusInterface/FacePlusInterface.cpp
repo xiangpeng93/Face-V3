@@ -283,7 +283,7 @@ int SetFaceUserID(char *faceToken, char * userId)
 		curl_formadd(&formpost, &lastptr, CURLFORM_COPYNAME, "api_key", CURLFORM_COPYCONTENTS, "lxtJqlWUVMwoOuzRPQJPOZ15sZa59VlK", CURLFORM_END);
 		curl_formadd(&formpost, &lastptr, CURLFORM_COPYNAME, "api_secret", CURLFORM_COPYCONTENTS, "rT7dp9PvuY-JweR57XA4VTPHoJwXtejM", CURLFORM_END);
 		curl_formadd(&formpost, &lastptr, CURLFORM_COPYNAME, "face_token", CURLFORM_COPYCONTENTS, faceToken, CURLFORM_END);
-		curl_formadd(&formpost, &lastptr, CURLFORM_COPYNAME, "userId", CURLFORM_COPYCONTENTS, userId, CURLFORM_END);
+		curl_formadd(&formpost, &lastptr, CURLFORM_COPYNAME, "outer_id", CURLFORM_COPYCONTENTS, userId, CURLFORM_END);
 
 		curl_easy_setopt(curl, CURLOPT_HTTPPOST, formpost);
 
