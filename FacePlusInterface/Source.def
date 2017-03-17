@@ -7,4 +7,6 @@ RemoveFromFaceSet
 FaceSearch
 DetectFace
 GetResponseMsg
+SetFaceUserID
 Init
+Fini

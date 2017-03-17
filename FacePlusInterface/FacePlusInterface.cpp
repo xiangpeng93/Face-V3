@@ -264,3 +264,36 @@ int FaceSearch(char *out_id, char * path)
 
 	return 0;
 }
+
+
+
+int SetFaceUserID(char *faceToken, char * userId)
+{
+	curl = curl_easy_init();
+	if (curl && userId != "") {
+
+		struct curl_httppost *formpost = 0;
+		struct curl_httppost *lastptr = 0;
+		curl_easy_setopt(curl, CURLOPT_URL, "https://api-cn.faceplusplus.com/facepp/v3/face/setuserid");
+
+		curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, true);
+		curl_easy_setopt(curl, CURLOPT_CAINFO, "curl-ca-bundle.crt");
+		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
+		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &strResponse);
+		curl_formadd(&formpost, &lastptr, CURLFORM_COPYNAME, "api_key", CURLFORM_COPYCONTENTS, "lxtJqlWUVMwoOuzRPQJPOZ15sZa59VlK", CURLFORM_END);
+		curl_formadd(&formpost, &lastptr, CURLFORM_COPYNAME, "api_secret", CURLFORM_COPYCONTENTS, "rT7dp9PvuY-JweR57XA4VTPHoJwXtejM", CURLFORM_END);
+		curl_formadd(&formpost, &lastptr, CURLFORM_COPYNAME, "face_token", CURLFORM_COPYCONTENTS, faceToken, CURLFORM_END);
+		curl_formadd(&formpost, &lastptr, CURLFORM_COPYNAME, "userId", CURLFORM_COPYCONTENTS, userId, CURLFORM_END);
+
+		curl_easy_setopt(curl, CURLOPT_HTTPPOST, formpost);
+
+		res = curl_easy_perform(curl);
+		if (res != CURLE_OK)
+			fprintf(stderr, "curl_easy_perform() failed: %s\n",
+			curl_easy_strerror(res));
+		curl_formfree(formpost);
+	}
+	curl_easy_cleanup(curl);
+
+	return 0;
+}
