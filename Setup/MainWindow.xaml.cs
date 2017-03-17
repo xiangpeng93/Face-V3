@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace Setup
 {
@@ -67,7 +69,7 @@ namespace Setup
 
 		public MainWindow()
 		{
-			Init();
+            Init(); 
 			InitializeComponent();
 		}
 
@@ -93,6 +95,29 @@ namespace Setup
 			DetectFace(url_box.Text);
 			GetResponseMsg(message);
 			message_box.Text = message.ToString();
+
+            JsonTextReader reader = new JsonTextReader(new StringReader(message_box.Text));
+            bool isFindToken = false;
+            while (reader.Read())
+            {
+                if(reader.Value != null)
+                {
+                    if (isFindToken && reader.TokenType.ToString().Equals("String"))
+                    {
+                        Console.WriteLine("Token: {0}, Value: {1}", reader.TokenType, reader.Value);
+                        ReslutDetect.Text = reader.Value.ToString();
+                        value_faceId_box.Text = reader.Value.ToString();
+                        break;
+                    }
+                    if (reader.Value.Equals("face_token"))
+                    {
+                        Console.WriteLine("Token: {0}, Value: {1}", reader.TokenType, reader.Value);
+                        isFindToken = true;
+                    }
+                }
+               
+            }
+
 		}
 
 
@@ -103,21 +128,6 @@ namespace Setup
 			GetResponseMsg(message);
 			message_box.Text = message.ToString();
 		}
-
-		private void Train_Click(object sender, RoutedEventArgs e)
-		{
-			StringBuilder message = new StringBuilder(10 * 1024);
-
-			message_box.Text = message.ToString();
-		}
-
-		private void Train_group_Click(object sender, RoutedEventArgs e)
-		{
-			StringBuilder message = new StringBuilder(10 * 1024);
-
-			message_box.Text = message.ToString();
-		}
-
 
 
 		private void AddGropFace_Click(object sender, RoutedEventArgs e)
@@ -131,7 +141,7 @@ namespace Setup
 		private void DeleteGroupFace_Click(object sender, RoutedEventArgs e)
 		{
 			StringBuilder message = new StringBuilder(10 * 1024);
-			RemoveFromFaceSet(value_group_box.Text, ReslutDetect.Text);
+            RemoveFromFaceSet(value_group_box.Text, value_faceId_box.Text);
 			GetResponseMsg(message);
 			message_box.Text = message.ToString();
 		}

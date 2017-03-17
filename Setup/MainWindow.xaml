@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Setup.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="558.9" Width="905.114">
+        Title="人脸比对管理后台" Height="558.9" Width="905.114">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
@@ -11,7 +11,7 @@
             <ColumnDefinition Width="0*"></ColumnDefinition>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TextBox Grid.Row="1" Name="message_box" Text="output...."  ToolTip="Output message.." AcceptsReturn="True" TextWrapping="Wrap" Margin="10" Grid.ColumnSpan="2"></TextBox>
+        <TextBox Grid.Row="1" Name="message_box" Text="输出区域...."  ToolTip="Output message.." AcceptsReturn="True" TextWrapping="Wrap" Margin="10" Grid.ColumnSpan="2"></TextBox>
         <Grid Grid.Row="0" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions >
                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -26,17 +26,17 @@
                     <StackPanel Height="auto" VerticalAlignment="Center">
 
 
-                        <TextBlock Text="输入需要创建或删除的群组名称 . " Margin="5,0,0,0"  VerticalAlignment="Center"></TextBlock>
+                        <TextBlock Text="①输入需要创建或删除的群组名称 . " Margin="5,0,0,0"  VerticalAlignment="Center"></TextBlock>
 
                         <TextBox ToolTip="Please input group name ..." Name="value_group_box" Margin="5,0,0,0" Text=""  VerticalAlignment="Center" ></TextBox>
-                        <TextBlock Text="请输入人脸检测结果返回值. " Margin="5,0,0,0"  VerticalAlignment="Center" ></TextBlock>
+                        <TextBlock Text="②请输入人脸检测返回值. " Margin="5,0,0,0"  VerticalAlignment="Center" ></TextBlock>
                         <TextBox ToolTip="Please input faceid ..." Name="value_faceId_box" Margin="5,0,0,0" Text=""  VerticalAlignment="Center" ></TextBox>
                     </StackPanel>
 
                 </DockPanel>
                 <DockPanel Grid.Row="1" Margin="5">
-                    <TextBlock Grid.Row="2" Text="输入本地图片路径: " HorizontalAlignment="Left" VerticalAlignment="Center" ></TextBlock>
-                    <TextBox Name="url_box" Margin="10,0,0,0" Text="" ToolTip="Please input.." VerticalAlignment="Center" HorizontalAlignment="Stretch"></TextBox>
+                    <TextBlock Grid.Row="2" Text="③输入本地图片路径: " HorizontalAlignment="Left" VerticalAlignment="Center" ></TextBlock>
+                    <TextBox Name="url_box" Margin="10,0,0,0" ToolTip="Please input.." VerticalAlignment="Center" HorizontalAlignment="Stretch" Text="IMG_20161001_153752.jpg"></TextBox>
                 </DockPanel>
             </Grid>
 
@@ -84,39 +84,33 @@
 
                     <TabItem x:Name="GroupManger" Header="创建或删除人物" HorizontalAlignment="Left">
                         <StackPanel>
-                            <TextBlock Text="---GroupManger---" VerticalAlignment="Center" Height="20" HorizontalAlignment="Center"/>
-                            <Button Click="AddGroup_Click"  Margin="02" x:Name="AddGroup" Content="添加群组"/>
-                            <Button Click="DeleteGroup_Click" Margin="2" x:Name="DeleteGroup" Content="删除群组"/>
-                            <Button Click="AddGropFace_Click"  Margin="2" x:Name="AddGropFace" Content="添加人脸"/>
-                            <Button Click="DeleteGroupFace_Click"  Margin="2" x:Name="DeleteGroupFace" Content="删除人脸"/>
+                            <TextBlock Text="---群组管理模块---" VerticalAlignment="Center" Height="20" HorizontalAlignment="Center"/>
+                            <Button Click="AddGroup_Click"  Margin="02" x:Name="AddGroup" Content="添加群组（请在①位置输入群组名称）"/>
+                            <Button Click="DeleteGroup_Click" Margin="2" x:Name="DeleteGroup" Content="删除群组（请在①位置输入群组名称）"/>
+                            <Button Click="AddGropFace_Click"  Margin="2" x:Name="AddGropFace" Content="添加人脸（请在②位置输入人脸检测返回值）"/>
+                            <Button Click="DeleteGroupFace_Click"  Margin="2" x:Name="DeleteGroupFace" Content="删除人脸（请在②位置输入人脸检测返回值）"/>
 
                         </StackPanel>
                     </TabItem>
                     <TabItem x:Name="Detect" Header="人脸检测"  HorizontalAlignment="Left">
                         <StackPanel>
-                            <TextBlock Text="--Detect Manger--" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Text="--请在③位置中先输入图片路径--" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             <Button Click="DetectFace_Click"  Margin="0,5" x:Name="DetectFace_button" Content="开始检测"/>
-
-                        </StackPanel>
-                    </TabItem>
-                    <TabItem x:Name="Person" Header="人物操作"  HorizontalAlignment="Left" >
-                        <StackPanel Margin="2">
-                            <TextBlock Text="--请输入人物名称--" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <TextBox ToolTip="Please input person name ..." Name="value_person_box"  Text="" VerticalAlignment="Center"></TextBox>
+                            <TextBlock Text="--请输入该图片中的人物名称--" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBox ToolTip="Please input person name ..." Name="value_person_box" Margin="2"  Text="" VerticalAlignment="Center"></TextBox>
                             <Button Click="SetFaceUser_Click" Margin="0,1" x:Name="SetFaceUser" Content="指定图片所属人物"/>
                         </StackPanel>
                     </TabItem>
 
-
                     <TabItem x:Name="Recognize" Header="人脸比对"  HorizontalAlignment="Left" VerticalAlignment="Top">
                         <StackPanel>
-                            <TextBlock Text="--Person Manger--"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <Button Click="RecoFace_Click"  Margin="0,5" x:Name="RecoFace" Content="RecoFace"/>
+                            <TextBlock Text="--人脸比对,结果输出在检测结果中--"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <Button Click="RecoFace_Click"  Margin="0,5" x:Name="RecoFace" Content="开始比对"/>
                         </StackPanel>
                     </TabItem>
 
                 </TabControl>
-                <DockPanel Margin="10">
+                <DockPanel Margin="10" VerticalAlignment="Bottom">
                     <TextBlock Text="检测结果返回值:"></TextBlock>
                     <TextBox Margin="5,0,0,0" Name="ReslutDetect"></TextBox>
                 </DockPanel>

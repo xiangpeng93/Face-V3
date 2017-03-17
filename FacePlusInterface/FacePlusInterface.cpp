@@ -55,7 +55,6 @@ size_t write_data(void *buffer, size_t size, size_t nmemb, void *stream) {
 }
 int Init()
 {
-
 	curl_global_init(CURL_GLOBAL_DEFAULT);
 	return 0;
 };
@@ -77,7 +76,6 @@ int DetectFace(char * path)
 {
 	curl = curl_easy_init();
 	if (curl && path!= "") {
-
 		struct curl_httppost *formpost = 0;
 		struct curl_httppost *lastptr = 0;
 		curl_easy_setopt(curl, CURLOPT_URL, "https://api-cn.faceplusplus.com/facepp/v3/detect");
@@ -153,6 +151,7 @@ int DeleteFaceSet(char * out_id)
 		curl_formadd(&formpost, &lastptr, CURLFORM_COPYNAME, "api_key", CURLFORM_COPYCONTENTS, "lxtJqlWUVMwoOuzRPQJPOZ15sZa59VlK", CURLFORM_END);
 		curl_formadd(&formpost, &lastptr, CURLFORM_COPYNAME, "api_secret", CURLFORM_COPYCONTENTS, "rT7dp9PvuY-JweR57XA4VTPHoJwXtejM", CURLFORM_END);
 		curl_formadd(&formpost, &lastptr, CURLFORM_COPYNAME, "outer_id", CURLFORM_COPYCONTENTS, out_id, CURLFORM_END);
+		curl_formadd(&formpost, &lastptr, CURLFORM_COPYNAME, "check_empty", CURLFORM_COPYCONTENTS, "0", CURLFORM_END);
 
 		curl_easy_setopt(curl, CURLOPT_HTTPPOST, formpost);
 
