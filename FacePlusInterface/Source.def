@@ -1,0 +1,10 @@
+LIBRARY FacePlusInterface
+EXPORTS
+CreateFaceSet
+DeleteFaceSet
+AddFaceToFaceSet
+RemoveFromFaceSet
+FaceSearch
+DetectFace
+GetResponseMsg
+Init
