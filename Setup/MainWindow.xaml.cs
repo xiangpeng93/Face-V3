@@ -69,7 +69,6 @@ namespace Setup
 
 		public MainWindow()
 		{
-            Init(); 
 			InitializeComponent();
 		}
 

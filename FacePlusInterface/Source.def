@@ -8,5 +8,6 @@ FaceSearch
 DetectFace
 GetResponseMsg
 SetFaceUserID
+FaceSearchByFaceId
 Init
 Fini
