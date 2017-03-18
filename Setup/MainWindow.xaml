@@ -36,7 +36,7 @@
                 </DockPanel>
                 <DockPanel Grid.Row="1" Margin="5">
                     <TextBlock Grid.Row="2" Text="③输入本地图片路径: " HorizontalAlignment="Left" VerticalAlignment="Center" ></TextBlock>
-                    <TextBox Name="url_box" Margin="10,0,0,0" ToolTip="Please input.." VerticalAlignment="Center" HorizontalAlignment="Stretch" Text="IMG_20161001_153752.jpg"></TextBox>
+                    <TextBox Name="url_box" Margin="10,0,0,0" ToolTip="Please input.." VerticalAlignment="Center" HorizontalAlignment="Stretch" Text="temp.jpg"></TextBox>
                 </DockPanel>
             </Grid>
 
